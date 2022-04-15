@@ -31,6 +31,16 @@ const routes = [
     name: 'Equipo',
     component: () => import('@/views/Equipos/Equipo.vue'),
   },
+  {
+    path: '/puestosfichaje',
+    name: 'Puestos de fichaje',
+    component: () => import('@/views/Puestos/Puestos.vue'),
+  },
+  {
+    path: '/puestosfichaje/:id',
+    name: 'Puesto de fichaje',
+    component: () => import('@/views/Puestos/Puesto.vue'),
+  },
 ]
 
 const router = createRouter({

@@ -19,7 +19,7 @@ export default {
   name: 'AppHeaderDropdownAccnt',
   data() {
     return {
-      avatar: 'http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png'
+      avatar: '/persona.png'
     }
   },
   methods: {

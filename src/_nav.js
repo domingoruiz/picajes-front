@@ -15,4 +15,10 @@ export default [
     to: '/zonas',
     icon: 'cil-drop',
   },
+  {
+    component: 'CNavItem',
+    name: 'Equipos',
+    to: '/equipos',
+    icon: 'cil-drop',
+  },
 ]

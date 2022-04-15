@@ -21,6 +21,16 @@ const routes = [
     name: 'Zona',
     component: () => import('@/views/Zonas/Zona.vue'),
   },
+  {
+    path: '/equipos',
+    name: 'Equipos',
+    component: () => import('@/views/Equipos/Equipos.vue'),
+  },
+  {
+    path: '/equipos/:id',
+    name: 'Equipo',
+    component: () => import('@/views/Equipos/Equipo.vue'),
+  },
 ]
 
 const router = createRouter({

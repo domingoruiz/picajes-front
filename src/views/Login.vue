@@ -70,7 +70,7 @@ export default {
     validarlogin: (self)  => {
       axios({
         method: 'GET',
-        url: config.apiserver+"1.0/usuarios/login/",
+        url: config.apiserver+"1.0/login/",
         params: {
           username: self.username,
           password: md5(self.password)

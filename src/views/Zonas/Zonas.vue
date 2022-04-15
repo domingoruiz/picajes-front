@@ -13,9 +13,9 @@
                     </CTableRow>
                     </CTableHead>
                     <CTableBody>
-                    <CTableRow :key="zona" v-for="zona in zonas">
+                    <CTableRow :key="zona" v-for="(zona, index) in zonas">
                         <CTableHeaderCell scope="row">
-                          {{zona.id}}
+                          {{index+1}}
                         </CTableHeaderCell>
                         <CTableDataCell>
                           <router-link :to="`/zonas/${zona.id}`">{{zona.nombre}}</router-link>

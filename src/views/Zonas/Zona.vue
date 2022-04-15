@@ -6,8 +6,11 @@
                 <CCardHeader> Zona </CCardHeader>
                 <CCardBody>
                   <form>
-                    <div v-if="(errorCode != 200) & (errorCode != 0)">
+                    <div v-if="(errorCode>0)&(errorCode!=200)">
                       <div class="alert alert-danger" role="alert">{{ errorText }}</div>
+                    </div>
+                    <div v-if="(errorCode==200)">
+                      <div class="alert alert-success" role="alert">{{ errorText }}</div>
                     </div>
                     <div class="mb-3">
                       <label class="form-label" for="nombre">Nombre</label>
@@ -56,11 +59,6 @@ export default {
         })
         .then((response) => {
             self.nombre = response.data.salida.nombre;
-            self.errorCode = 200;
-        })
-        .catch((error) => {
-            self.errorText = error.response.data.error;
-            self.errorCode = error.response.status;
         });
     },
     modificarzona: (self) => {
@@ -73,8 +71,9 @@ export default {
           },
           crossdomain: true,
       })
-      .then(() => {
-        self.errorCode = 200;
+      .then((response) => {
+        self.errorText = response.data.error;
+        self.errorCode = response.status;
       })
       .catch((error) => {
         self.errorText = error.response.data.error;
@@ -83,14 +82,12 @@ export default {
 
       setTimeout(function () {
         if(self.errorCode == 200) {
-          self.errorText = '';
-          self.nombre = "";
           self.cargarzona(self);
         }
       }, 200);
     },
     eliminarzona: (self) => {
-      var opcion = confirm("Clicka en Aceptar o Cancelar");
+      var opcion = confirm("¿Estás seguro de eliminar la zona?");
       
       if(opcion) {
         axios({
@@ -100,18 +97,18 @@ export default {
         })
         .then(() => {
           self.errorCode = 200;
+          self.errorText = "Zona eliminada correctamente";
+          
+          setTimeout(function () {
+              self.$router.push('/zonas');
+          }, 400);
         })
         .catch((error) => {
-          self.errorText = error.response.data.error;
-          self.errorCode = error.response.status;
-        });
-
-        setTimeout(function () {
-          if(self.errorCode == 200) {
-            self.errorText = '';
-            self.$router.push('/zonas');
+          if(self.errorCode!=200) {
+            self.errorText = error.response.data.error;
+            self.errorCode = error.response.status;
           }
-        }, 200);
+        });
       }
     },
   },

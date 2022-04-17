@@ -7,6 +7,16 @@ export default [
   },
   {
     component: 'CNavTitle',
+    name: 'Fichajes',
+  },
+  {
+    component: 'CNavItem',
+    name: 'Logs',
+    to: '/logs',
+    icon: 'cil-drop',
+  },
+  {
+    component: 'CNavTitle',
     name: 'Maestros',
   },
   {

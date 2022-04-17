@@ -17,14 +17,20 @@ export default [
   },
   {
     component: 'CNavItem',
+    name: 'Puestos de fichaje',
+    to: '/puestosfichaje',
+    icon: 'cil-drop',
+  },
+  {
+    component: 'CNavItem',
     name: 'Equipos',
     to: '/equipos',
     icon: 'cil-drop',
   },
   {
     component: 'CNavItem',
-    name: 'Puestos de fichaje',
-    to: '/puestosfichaje',
+    name: 'Usuarios',
+    to: '/usuarios',
     icon: 'cil-drop',
   },
 ]

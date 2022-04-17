@@ -41,6 +41,16 @@ const routes = [
     name: 'Puesto de fichaje',
     component: () => import('@/views/Puestos/Puesto.vue'),
   },
+  {
+    path: '/usuarios',
+    name: 'Usuarios',
+    component: () => import('@/views/Usuarios/Usuarios.vue'),
+  },
+  {
+    path: '/usuarios/:id',
+    name: 'Usuario',
+    component: () => import('@/views/Usuarios/Usuario.vue'),
+  },
 ]
 
 const router = createRouter({

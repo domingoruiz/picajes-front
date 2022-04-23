@@ -15,18 +15,16 @@
     </CContainer>
     <CHeaderDivider />
     <CContainer fluid>
-      <AppBreadcrumb />
+      
     </CContainer>
   </CHeader>
 </template>
 
 <script>
-import AppBreadcrumb from './AppBreadcrumb'
 import AppHeaderDropdownAccnt from './AppHeaderDropdownAccnt'
 export default {
   name: 'AppHeader',
   components: {
-    AppBreadcrumb,
     AppHeaderDropdownAccnt,
   },
 }

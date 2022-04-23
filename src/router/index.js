@@ -56,6 +56,11 @@ const routes = [
     name: 'Logs',
     component: () => import('@/views/Logs/Logs.vue'),
   },
+  {
+    path: '/picador/:empresa/:puesto',
+    name: 'Picador',
+    component: () => import('@/views/Picador/Picador.vue'),
+  },
 ]
 
 const router = createRouter({

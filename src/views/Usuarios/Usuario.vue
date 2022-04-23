@@ -56,6 +56,14 @@
                       <label class="form-label" for="nombre">Equipo</label>
                       <SelectEquipos @getEquipo="getEquipo" v-bind:value="equipo"/>
                     </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="nombre">Barcode</label>
+                      <CFormInput 
+                        class="form-control" 
+                        id="barcode" 
+                        type="number"
+                        v-model:model-value="barcode"/>
+                    </div>
                       <button class="btn btn-primary mb-3" type="submit" v-on:click="modificarusuario(this)" style="margin-right: 5px">Modificar usuario</button>  
                       <button class="btn btn-danger mb-3" v-on:click="eliminarusuario(this)">Eliminar usuario</button>
                   </form>
@@ -82,6 +90,7 @@ export default {
       email: '',
       telefono: '',
       equipo: '',
+      barcode: '',
       errorCode: 0,
       errorText: ''
     }
@@ -106,6 +115,7 @@ export default {
             self.email = response.data.salida.email;
             self.telefono = response.data.salida.telefono;
             self.equipo = response.data.salida.equipo;
+            self.barcode = response.data.salida.barcode;
         });
     },
     modificarusuario: (self) => {
@@ -118,7 +128,8 @@ export default {
             password: self.contrasenia,
             email: self.email,
             telefono: self.telefono,
-            equipo: self.equipo
+            equipo: self.equipo,
+            barcode: self.barcode
           },
           crossdomain: true,
       })

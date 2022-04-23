@@ -11,6 +11,12 @@ export default [
   },
   {
     component: 'CNavItem',
+    name: 'Fichajes',
+    to: '/fichajes',
+    icon: 'cil-drop',
+  },
+  {
+    component: 'CNavItem',
     name: 'Logs',
     to: '/logs',
     icon: 'cil-drop',

@@ -57,6 +57,11 @@ const routes = [
     component: () => import('@/views/Logs/Logs.vue'),
   },
   {
+    path: '/fichajes',
+    name: 'Fichajes',
+    component: () => import('@/views/Fichajes/Fichajes.vue'),
+  },
+  {
     path: '/picador/:empresa/:puesto',
     name: 'Picador',
     component: () => import('@/views/Picador/Picador.vue'),

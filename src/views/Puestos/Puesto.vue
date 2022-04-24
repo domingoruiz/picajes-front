@@ -25,6 +25,11 @@
                         v-model:model-value="nombre"
                         v-on:keyup.enter="modificarpuestofichaje(this)" />
                     </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="url">URL del picador</label>
+                      <br />
+                      <p>{{url}}</p>
+                    </div>
                       <button class="btn btn-primary mb-3" type="submit" v-on:click="modificarpuestofichaje(this)" style="margin-right: 5px">Modificar puesto</button>  
                       <button class="btn btn-danger mb-3" v-on:click="eliminarpuestofichaje(this)">Eliminar puesto</button>
                   </form>
@@ -47,8 +52,10 @@ export default {
     return {
       nombre: '',
       zona: '',
+      empresa: '',
       errorCode: 0,
-      errorText: ''
+      errorText: '',
+      url: ''
     }
   },
   components: {
@@ -67,6 +74,8 @@ export default {
         .then((response) => {
             self.nombre = response.data.salida.nombre;
             self.zona = response.data.salida.zona;
+            self.empresa = response.data.salida.empresa;
+            self.url = "http://"+window.location.host+"/#/picador/"+self.empresa+"/"+self.$route.params.id;
         });
     },
     modificarpuestofichaje: (self) => {

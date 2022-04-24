@@ -21,6 +21,7 @@
             <div class="alert alert-success" role="alert" style="text-align: center"><h3>{{ errorText }}</h3></div>
           </div>
           <input 
+            v-if="bloqueado != 1"
             ref="barcode"
             type="number" 
             v-model="barcode"
@@ -29,6 +30,7 @@
             />
       </div>
       <AppFooter />
+      <p style="position: fixed; bottom: 0px; margin-bottom: 80px; margin-left: 17px; width: 90%;">{{nombreEmpresa}} - {{nombrePuesto}}</p>
     </div>
   </div>
 </template>
@@ -48,7 +50,10 @@ export default {
       puesto: this.$route.params.puesto,
       errorCode: 0,
       errorText: '',
-      date: ''
+      date: '',
+      bloqueado: 1,
+      nombreEmpresa: '',
+      nombrePuesto: ''
     }
   },
   components: {
@@ -67,8 +72,7 @@ export default {
           data: {
             barcode: self.barcode,
             puesto_fichaje: self.puesto,
-            empresa: self.empresa,
-            tipo_movimiento: 1
+            empresa: self.empresa
           },
           crossdomain: true,
       })
@@ -95,7 +99,48 @@ export default {
         });
   },
   mounted() {
-    this.$refs.barcode.focus();
+    axios({
+          method: 'GET',
+          url: config.apiserver+"1.0/empresas/"+this.empresa+"/?token_sesion="+VueCookies.get('token_sesion'),
+          data: {
+            token_sesion: VueCookies.get('token_sesion'),
+          },
+          crossdomain: true,
+      })
+      .then((response) => {
+        this.errorText = response.data.error;
+        this.nombreEmpresa = response.data.salida.nombre;
+        this.bloqueado = 0;
+      })
+      .catch((error) => {
+        this.errorText = error.response.data.salida.error;
+        this.errorCode = error.response.status;
+        this.bloqueado = 1;
+      });
+
+    axios({
+          method: 'GET',
+          url: config.apiserver+"1.0/puestofichajes/"+this.puesto+"/?token_sesion="+VueCookies.get('token_sesion'),
+          data: {
+            token_sesion: VueCookies.get('token_sesion'),
+          },
+          crossdomain: true,
+      })
+      .then((response) => {
+        this.errorText = response.data.error;
+        this.nombrePuesto = response.data.salida.nombre;
+        this.bloqueado = 0;
+      })
+      .catch((error) => {
+        this.errorText = error.response.data.error;
+        this.errorCode = error.response.status;
+        this.bloqueado = 1;
+      });
+
+    if(this.bloqueado == 0) {
+      this.currentDate();
+      this.$refs.barcode.focus();
+    }
   }
 }
 </script>

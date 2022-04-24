@@ -66,8 +66,7 @@ export default {
           method: 'PUT',
           url: config.apiserver+"1.0/equipos/"+self.$route.params.id+"?token_sesion="+VueCookies.get('token_sesion'),
           data: {
-            nombre: self.nombre,
-            empresa: 1
+            nombre: self.nombre
           },
           crossdomain: true,
       })

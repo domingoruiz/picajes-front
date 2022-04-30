@@ -5,6 +5,44 @@
             <CCard class="mb-4">
                 <CCardHeader> Fichajes </CCardHeader>
                 <CCardBody>
+                <form class="form-inline">
+                    <div>
+                      <div class="form-group" style="display: inline;">
+                      <button 
+                      class="btn btn-primary" 
+                      type="submit" 
+                      v-on:click="cargarfichajes(this)" 
+                      placeholder="DD/MM/YY">
+                        Buscar
+                      </button> 
+                      </div>
+                      <div class="form-group" style="display: inline; margin-left: 15px">
+                        <label class="form-label mb-2" for="nombre" style="width: 110px">Fecha de inicio</label>
+                        <input type="date" class="form-control mb-2" id="fch_ini" v-model="fch_ini" style="width: 170px; display: inline; margin-left: 15px"/>
+                      </div>
+                      <div class="form-group" style="display: inline; margin-left: 15px"> 
+                        <label class="form-label mb-2" for="nombre" style="width: 110px">Fecha de fin</label>
+                        <input type="date" class="form-control mb-2" id="fch_fin" v-model="fch_fin" style="width: 170px; display: inline; margin-left: 15px"/>
+                      </div>
+                      <div class="form-group" style="display: inline; margin-left: 15px">   
+                        <label class="form-label mb-2" for="nombre" style="width: 110px">Equipo</label>
+                        <SelectEquipos @getEquipo="getEquipo" v-bind:value="equipo" class="form-control mb-2" style="width: 170px; display: inline; margin-left: 15px"/>
+                      </div>
+                      <br>
+                      <div class="form-group" style="display: inline; margin-left: 88px">   
+                        <label class="form-label mb-2" for="nombre" style="width: 110px">Usuario</label>
+                        <SelectUsuarios @getUsuario="getUsuario" v-bind:value="usuario" class="form-control mb-2" style="width: 170px; display: inline; margin-left: 15px"/>
+                      </div>
+                      <div class="form-group" style="display: inline; margin-left: 15px">   
+                        <label class="form-label mb-2" for="nombre" style="width: 110px">Estado</label>
+                        <select v-model="estado" class="form-control mb-2" style="width: 170px; display: inline; margin-left: 15px" >
+                          <option value="0" selected>Elegir un estado...</option>
+                          <option value="1">Dentro</option>
+                          <option value="2">Fuera</option>
+                        </select>
+                      </div> 
+                    </div>
+                  </form>
                 <CTable>
                     <CTableHead>
                     <CTableRow>
@@ -56,6 +94,8 @@
 </template>
 <script>
 import DefaultLayout from '@/layouts/DefaultLayout'
+import SelectEquipos from '@/components/SelectEquipos'
+import SelectUsuarios from '@/components/SelectUsuarios'
 import config from '@/config/config.js';
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
@@ -66,11 +106,18 @@ export default {
     return {
       fichajes: [],
       errorCode: 0,
-      errorText: ''
+      errorText: '',
+      fch_ini: '',
+      fch_fin: '',
+      equipo: 0,
+      usuario: 0,
+      estado: 0
     }
   },
   components: {
-    DefaultLayout
+    DefaultLayout,
+    SelectEquipos,
+    SelectUsuarios
   },
   methods: {
     cargarfichajes: (self)  => {
@@ -79,6 +126,11 @@ export default {
             url: config.apiserver+"1.0/fichajes/",
             params: {
             token_sesion: VueCookies.get('token_sesion'),
+            fch_ini: self.fch_ini,
+            fch_fin: self.fch_fin,
+            equipo: self.equipo,
+            usuario: self.usuario,
+            estado: self.estado
             }
         })
         .then((response) => {
@@ -90,9 +142,17 @@ export default {
             self.errorCode = error.response.status;
         });
     },
+    getEquipo(data) {
+      this.equipo = data;
+    },
+    getUsuario(data) {
+      this.usuario = data;
+    },
   },
   mounted() {
     this.cargarfichajes(this);
+    this.fch_ini = new Date().toISOString().split('T')[0];
+    this.fch_fin = new Date().toISOString().split('T')[0];
   }
 }
 </script>

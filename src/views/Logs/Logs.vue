@@ -5,6 +5,31 @@
             <CCard class="mb-4">
                 <CCardHeader> Logs </CCardHeader>
                 <CCardBody>
+                  <form class="form-inline">
+                    <div>
+                      <div class="form-group" style="display: inline;">
+                      <button 
+                      class="btn btn-primary" 
+                      type="submit" 
+                      v-on:click="cargarlogs(this)" 
+                      placeholder="DD/MM/YY">
+                        Buscar
+                      </button> 
+                      </div>
+                      <div class="form-group" style="display: inline; margin-left: 15px">
+                        <label class="form-label mb-2" for="nombre" style="width: 110px">Fecha de inicio</label>
+                        <input type="date" class="form-control mb-2" id="fch_ini" v-model="fch_ini" style="width: 170px; display: inline; margin-left: 15px"/>
+                      </div>
+                      <div class="form-group" style="display: inline; margin-left: 15px"> 
+                        <label class="form-label mb-2" for="nombre" style="width: 110px">Fecha de fin</label>
+                        <input type="date" class="form-control mb-2" id="fch_fin" v-model="fch_fin" style="width: 170px; display: inline; margin-left: 15px"/>
+                      </div>
+                      <div class="form-group" style="display: inline; margin-left: 15px">   
+                        <label class="form-label mb-2" for="nombre" style="width: 110px">Usuario</label>
+                        <SelectUsuarios @getUsuario="getUsuario" v-bind:value="usuario" class="form-control mb-2" style="width: 170px; display: inline; margin-left: 15px"/>
+                      </div>
+                    </div>
+                  </form>
                 <CTable>
                     <CTableHead>
                     <CTableRow>
@@ -44,6 +69,7 @@
 </template>
 <script>
 import DefaultLayout from '@/layouts/DefaultLayout'
+import SelectUsuarios from '@/components/SelectUsuarios'
 import config from '@/config/config.js';
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
@@ -54,11 +80,15 @@ export default {
     return {
       logs: [],
       errorCode: 0,
-      errorText: ''
+      errorText: '',
+      fch_ini: '',
+      fch_fin: '',
+      usuario: 0,
     }
   },
   components: {
-    DefaultLayout
+    DefaultLayout,
+    SelectUsuarios
   },
   methods: {
     cargarlogs: (self)  => {
@@ -67,6 +97,9 @@ export default {
             url: config.apiserver+"1.0/logs/",
             params: {
             token_sesion: VueCookies.get('token_sesion'),
+            fch_ini: self.fch_ini,
+            fch_fin: self.fch_fin,
+            usuario: self.usuario,
             }
         })
         .then((response) => {
@@ -77,6 +110,9 @@ export default {
             self.errorText = error.response.data.error;
             self.errorCode = error.response.status;
         });
+    },
+    getUsuario(data) {
+      this.usuario = data;
     },
   },
   mounted() {

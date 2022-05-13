@@ -3,7 +3,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Zona </CCardHeader>
+                <CCardHeader> <b>Zona</b> </CCardHeader>
                 <CCardBody>
                   <form>
                     <div v-if="(errorCode>0)&(errorCode!=200)">
@@ -86,7 +86,7 @@ export default {
       }, 200);
     },
     eliminarzona: (self) => {
-      var opcion = confirm("¿Estás seguro de eliminar la zona?");
+      var opcion = confirm("¿Estás seguro de eliminar la zona? Se eliminaran todos los logs y fichajes asociados a esta.");
       
       if(opcion) {
         axios({

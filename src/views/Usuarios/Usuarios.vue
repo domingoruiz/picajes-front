@@ -3,7 +3,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Usuarios </CCardHeader>
+                <CCardHeader> <b>Usuarios</b> </CCardHeader>
                 <CCardBody>
                 <CTable>
                     <CTableHead>
@@ -34,7 +34,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Crear nuevo usuario </CCardHeader>
+                <CCardHeader> <b>Crear nuevo usuario</b> </CCardHeader>
                 <CCardBody>
                   <form>
                     <div v-if="(errorCode != 200) & (errorCode != 0)">
@@ -137,8 +137,7 @@ export default {
         });
     },
     crearusuario: (self) => {
-      if(self.errorText == '') {
-        axios({
+      axios({
             method: 'POST',
             url: config.apiserver+"1.0/usuarios/?token_sesion="+VueCookies.get('token_sesion'),
             data: {
@@ -170,7 +169,6 @@ export default {
             self.cargarusuarios(self);
           }
         }, 200);
-      }
     },
     getEquipo(data) {
       this.equipo = data;

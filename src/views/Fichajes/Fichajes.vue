@@ -3,7 +3,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Fichajes </CCardHeader>
+                <CCardHeader> <b>Fichajes</b> </CCardHeader>
                 <CCardBody>
                 <form class="form-inline">
                     <div>
@@ -18,24 +18,24 @@
                       </div>
                       <div class="form-group" style="display: inline; margin-left: 15px">
                         <label class="form-label mb-2" for="nombre" style="width: 110px">Fecha de inicio</label>
-                        <input type="date" class="form-control mb-2" id="fch_ini" v-model="fch_ini" style="width: 170px; display: inline; margin-left: 15px"/>
+                        <input type="date" class="form-control mb-2" id="fch_ini" v-model="fch_ini" style="width: 220px; display: inline; margin-left: 15px"/>
                       </div>
                       <div class="form-group" style="display: inline; margin-left: 15px"> 
                         <label class="form-label mb-2" for="nombre" style="width: 110px">Fecha de fin</label>
-                        <input type="date" class="form-control mb-2" id="fch_fin" v-model="fch_fin" style="width: 170px; display: inline; margin-left: 15px"/>
+                        <input type="date" class="form-control mb-2" id="fch_fin" v-model="fch_fin" style="width: 220px; display: inline; margin-left: 15px"/>
                       </div>
                       <div class="form-group" style="display: inline; margin-left: 15px">   
                         <label class="form-label mb-2" for="nombre" style="width: 110px">Equipo</label>
-                        <SelectEquipos @getEquipo="getEquipo" v-bind:value="equipo" class="form-control mb-2" style="width: 170px; display: inline; margin-left: 15px"/>
+                        <SelectEquipos @getEquipo="getEquipo" v-bind:value="equipo" class="form-control mb-2" style="width: 220px; display: inline; margin-left: 15px"/>
                       </div>
                       <br>
                       <div class="form-group" style="display: inline; margin-left: 88px">   
                         <label class="form-label mb-2" for="nombre" style="width: 110px">Usuario</label>
-                        <SelectUsuarios @getUsuario="getUsuario" v-bind:value="usuario" class="form-control mb-2" style="width: 170px; display: inline; margin-left: 15px"/>
+                        <SelectUsuarios @getUsuario="getUsuario" v-bind:value="usuario" class="form-control mb-2" style="width: 220px; display: inline; margin-left: 15px"/>
                       </div>
                       <div class="form-group" style="display: inline; margin-left: 15px">   
                         <label class="form-label mb-2" for="nombre" style="width: 110px">Estado</label>
-                        <select v-model="estado" class="form-control mb-2" style="width: 170px; display: inline; margin-left: 15px" >
+                        <select v-model="estado" class="form-control mb-2" style="width: 220px; display: inline; margin-left: 15px" >
                           <option value="0" selected>Elegir un estado...</option>
                           <option value="1">Dentro</option>
                           <option value="2">Fuera</option>

@@ -3,7 +3,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Zonas </CCardHeader>
+                <CCardHeader> <b>Zonas</b> </CCardHeader>
                 <CCardBody>
                 <CTable>
                     <CTableHead>
@@ -30,7 +30,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Crear nueva zona </CCardHeader>
+                <CCardHeader> <b>Crear nueva zona</b> </CCardHeader>
                 <CCardBody>
                   <form>
                     <div v-if="(errorCode != 200) & (errorCode != 0)">

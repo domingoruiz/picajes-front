@@ -3,7 +3,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Puesto de fichaje </CCardHeader>
+                <CCardHeader> <b>Puesto de fichaje</b> </CCardHeader>
                 <CCardBody>
                   <form>
                     <div v-if="(errorCode>0)&(errorCode!=200)">
@@ -104,7 +104,7 @@ export default {
       }, 200);
     },
     eliminarpuestofichaje: (self) => {
-      var opcion = confirm("¿Estás seguro de eliminar el puesto de fichaje?");
+      var opcion = confirm("¿Estás seguro de eliminar el puesto de fichaje? Se eliminaran todos los logs y fichajes asociados a este.");
       
       if(opcion) {
         axios({

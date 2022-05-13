@@ -3,7 +3,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Puestos de fichaje </CCardHeader>
+                <CCardHeader> <b>Puestos de fichaje</b> </CCardHeader>
                 <CCardBody>
                 <CTable>
                     <CTableHead>
@@ -34,7 +34,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Crear nuevo puesto de fichaje </CCardHeader>
+                <CCardHeader> <b>Crear nuevo puesto de fichaje</b> </CCardHeader>
                 <CCardBody>
                   <form>
                     <div v-if="(errorCode != 200) & (errorCode != 0)">

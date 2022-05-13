@@ -3,7 +3,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Equipo </CCardHeader>
+                <CCardHeader> <b>Equipo</b> </CCardHeader>
                 <CCardBody>
                   <form>
                     <div v-if="(errorCode>0)&(errorCode!=200)">
@@ -86,7 +86,7 @@ export default {
       }, 200);
     },
     eliminarequipo: (self) => {
-      var opcion = confirm("¿Estás seguro de eliminar el equipo?");
+      var opcion = confirm("¿Estás seguro de eliminar el equipo? Se eliminaran todos los usuarios, logs y fichajes asociados a este.");
       
       if(opcion) {
         axios({

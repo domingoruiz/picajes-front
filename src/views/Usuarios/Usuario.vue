@@ -3,7 +3,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Usuario </CCardHeader>
+                <CCardHeader> <b>Usuario</b> </CCardHeader>
                 <CCardBody>
                   <form>
                     <div v-if="(errorCode>0)&(errorCode!=200)">
@@ -149,7 +149,7 @@ export default {
       }, 200);
     },
     eliminarusuario: (self) => {
-      var opcion = confirm("¿Estás seguro de eliminar el usuario?");
+      var opcion = confirm("¿Estás seguro de eliminar el usuario? Se eliminaran todos los logs y fichajes asociados a este.");
       
       if(opcion) {
         axios({

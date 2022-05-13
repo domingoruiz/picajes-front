@@ -3,7 +3,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Equipos </CCardHeader>
+                <CCardHeader> <b>Equipos</b> </CCardHeader>
                 <CCardBody>
                 <CTable>
                     <CTableHead>
@@ -30,7 +30,7 @@
         <CRow>
             <CCol>
             <CCard class="mb-4">
-                <CCardHeader> Crear nuevo equipo </CCardHeader>
+                <CCardHeader> <b>Crear nuevo equipo</b> </CCardHeader>
                 <CCardBody>
                   <form>
                     <div v-if="(errorCode != 200) & (errorCode != 0)">
